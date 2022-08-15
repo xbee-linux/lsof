@@ -1,0 +1,35 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+  The lsof package is useful to LiSt Open Files for a given running application or process.
+  Installed Program: lsof
+  Installed Libraries: None
+  Installed Directories: None
+  Short Descriptions
+    lsof: lists open files for running processes
+
+dependency: libtirpc
+
+in:
+  version: 4.94.0
+
+provision:
+  - url:
+      from: https://github.com/lsof-org/lsof/releases/download/{% version %}/lsof_{% version %}.linux.tar.bz2
+      todir: "{% xbeeSrc %}"
+  - folder:
+      paths:
+        - "{% xbeeOut %}/usr/bin"
+        - "{% xbeeOut %}/usr/share/man/man8"
+build:
+  - shell:
+      cmds:
+        - ./Configure -n linux
+        - make
+        - install -v -m4755 -o root -g root lsof {% xbeeOut %}/usr/bin
+        - install -v lsof.8 {% xbeeOut %}/usr/share/man/man8
+      directory: "{% xbeeSrc %}/lsof_{% version %}.linux"
+
+
