@@ -12,24 +12,24 @@ description: |
 
 dependency: libtirpc
 
-in:
+var:
   version: 4.94.0
 
 provision:
   - url:
-      from: https://github.com/lsof-org/lsof/releases/download/{% version %}/lsof_{% version %}.linux.tar.bz2
-      todir: "{% xbeeSrc %}"
+      from: https://github.com/lsof-org/lsof/releases/download/{{ .version }}/lsof_{{ .version }}.linux.tar.bz2
+      todir: "{{ .xbee.src }}"
   - folder:
       paths:
-        - "{% xbeeOut %}/usr/bin"
-        - "{% xbeeOut %}/usr/share/man/man8"
+        - "{{ .xbee.out }}/usr/bin"
+        - "{{ .xbee.out }}/usr/share/man/man8"
 build:
   - shell:
       cmds:
         - ./Configure -n linux
         - make
-        - install -v -m4755 -o root -g root lsof {% xbeeOut %}/usr/bin
-        - install -v lsof.8 {% xbeeOut %}/usr/share/man/man8
-      directory: "{% xbeeSrc %}/lsof_{% version %}.linux"
+        - install -v -m4755 -o root -g root lsof {{ .xbee.out }}/usr/bin
+        - install -v lsof.8 {{ .xbee.out }}/usr/share/man/man8
+      directory: "{{ .xbee.src }}/lsof_{{ .version }}.linux"
 
 
