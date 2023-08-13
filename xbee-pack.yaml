@@ -10,7 +10,7 @@ description: |
   Short Descriptions
     lsof: lists open files for running processes
 
-dependency: libtirpc
+builder: libtirpc
 
 var:
   version: 4.94.0
