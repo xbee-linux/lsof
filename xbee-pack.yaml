@@ -16,9 +16,7 @@ var:
   version: 4.94.0
 
 provision:
-  - url:
-      from: https://github.com/lsof-org/lsof/releases/download/{{ .version }}/lsof_{{ .version }}.linux.tar.bz2
-      todir: "{{ .xbee.src }}"
+  - url: https://github.com/lsof-org/lsof/releases/download/{{ .version }}/lsof_{{ .version }}.linux.tar.bz2
   - folder:
       paths:
         - "{{ .xbee.out }}/usr/bin"
