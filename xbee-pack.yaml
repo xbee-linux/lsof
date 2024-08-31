@@ -13,10 +13,11 @@ description: |
 builder: libtirpc
 
 var:
-  version: 4.94.0
+  xbee:
+    version: 4.94.0
 
 provision:
-  - url: https://github.com/lsof-org/lsof/releases/download/{{ .version }}/lsof_{{ .version }}.linux.tar.bz2
+  - url: https://github.com/lsof-org/lsof/releases/download/{{ .xbee.version }}/lsof_{{ .xbee.version }}.linux.tar.bz2
   - folder:
       paths:
         - "{{ .xbee.out }}/usr/bin"
@@ -28,6 +29,6 @@ build:
         - make
         - install -v -m4755 -o root -g root lsof {{ .xbee.out }}/usr/bin
         - install -v lsof.8 {{ .xbee.out }}/usr/share/man/man8
-      directory: "{{ .xbee.src }}/lsof_{{ .version }}.linux"
+      directory: "{{ .xbee.src }}/lsof_{{ .xbee.version }}.linux"
 
 
